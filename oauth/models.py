@@ -13,6 +13,8 @@ class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
     username = Column(String(32), index=True)
+    email = Column(String)
+    picture = Column(String)
     password_hash = Column(String(64))
 
     def hash_password(self, password):
@@ -43,6 +45,8 @@ class User(Base):
     def serialize(self):
         return {
             'username': self.username,
+            'email': self.email,
+            'picture': self.picture,
             'hash': self.password_hash
         }
 
